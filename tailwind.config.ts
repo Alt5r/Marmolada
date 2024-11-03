@@ -11,9 +11,10 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        backgroundNavbar: "#360836"
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
 export default config;
