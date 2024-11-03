@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link';
  
 export default function Navbar() {
   
@@ -19,7 +20,8 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex w-full justify-center">
         <ul className="menu menu-horizontal px-3 ">
           <li><a>Home</a></li>
-          <li><a>Painting - latest</a></li>
+          <li><a></a></li>
+          <li><Link href="/Gallery">Painting - latest</Link></li> {/* Button to Gallery */}
           <li><a>Painting - larger</a></li>
           <li><a>Painting - older</a></li>
           <li><a>Printmaking</a></li>
