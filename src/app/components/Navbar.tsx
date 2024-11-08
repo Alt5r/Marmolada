@@ -19,7 +19,7 @@ export default function Navbar() {
       
       <div className="navbar-center hidden lg:flex w-full justify-center">
         <ul className="menu menu-horizontal px-3 ">
-          <li><a>Home</a></li>
+          <li><Link href="/">Home</Link></li>
           <li><a></a></li>
           <li><Link href="/Gallery">Painting - latest</Link></li> {/* Button to Gallery */}
           <li><a>Painting - larger</a></li>

@@ -1,41 +1,26 @@
-// components/ImageGallery.tsx
-
 'use client'
 import Image from "next/image";
 
 const ImageGallery = () => {
-  // Adjust the image paths based on your actual images in the public/gallery directory
   const images = [
-    "/gallery/1.jpeg",
-    "/gallery/2.jpeg",
-    "/gallery/3.jpeg",
-    "/gallery/4.jpeg",
-    "/gallery/5.jpeg",
-    "/gallery/6.jpeg",
-    "/gallery/7.jpeg",
-    "/gallery/8.jpeg",
-    "/gallery/9.jpeg",
-    "/gallery/10.jpeg",
-    "/gallery/11.jpeg",
-    "/gallery/12.jpeg",
-    "/gallery/13.jpeg",
-    "/gallery/14.jpeg",
-    "/gallery/15.jpeg",
-    "/gallery/16.jpeg",
-    "/gallery/17.jpeg",
-    "/gallery/18.jpeg",
+    "/galleryI/1.jpeg", "/galleryI/2.jpeg", "/galleryI/3.jpeg",
+    "/galleryI/4.jpeg", "/galleryI/5.jpeg", "/galleryI/6.jpeg",
+    "/galleryI/7.jpeg", "/galleryI/8.jpeg", "/galleryI/9.jpeg",
+    "/galleryI/10.jpeg", "/galleryI/11.jpeg", "/galleryI/12.jpeg",
+    "/galleryI/13.jpeg", "/galleryI/14.jpeg", "/galleryI/15.jpeg",
+    "/galleryI/16.jpeg", "/galleryI/17.jpeg", "/galleryI/18.jpeg",
   ];
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-screen-lg mx-auto p-4">
       {images.map((src, index) => (
-        <div key={index} className="w-1/3 h-48 relative">
+        <div key={index} className="relative">
           <Image 
             src={src} 
-            alt={`Gallery Image ${index + 1}`} 
-            layout="fill" // This makes the image fill its parent container
-            objectFit="cover" // This ensures the image covers the entire area
-            className="rounded-lg shadow-lg" // Optional: styling for rounded corners and shadow
+            alt={`Gallery Image ${index + 1}`}
+            width={300}  // Adjust to fit your desired dimensions
+            height={200} // Adjust to fit your desired dimensions
+            className="rounded-lg shadow-lg transform transition-transform duration-700 ease-in-out hover:scale-105"
           />
         </div>
       ))}
