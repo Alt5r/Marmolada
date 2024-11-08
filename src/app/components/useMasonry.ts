@@ -1,54 +1,64 @@
-import { useEffect, useState, useRef } from "react";
+'use client';
+import { useEffect, useState, useRef } from 'react';
 
 const useMasonry = () => {
   const masonryContainer = useRef<HTMLDivElement | null>(null);
-  const [items, setItems] = useState<ChildNode[]>([]);
+  const [items, setItems] = useState<HTMLElement[]>([]);
+  const [columns, setColumns] = useState<number>(3);  // Default to 3 columns
 
+  // Function to dynamically determine number of columns based on screen width
+  const getColumns = () => {
+    if (window.innerWidth < 640) return 1;  // Mobile
+    if (window.innerWidth < 1024) return 2;  // Tablet
+    return 3; // Desktop
+  };
+
+  // When the component mounts, get the column count and listen to window resize events.
+  useEffect(() => {
+    setColumns(getColumns());  // Set columns initially based on screen size
+    const handleResize = () => {
+      setColumns(getColumns());  // Update columns on resize
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Once the images are loaded, calculate their position in the masonry layout.
   useEffect(() => {
     if (masonryContainer.current) {
-      const masonryItem = Array.from(masonryContainer.current.children);
+      const masonryItem = Array.from(masonryContainer.current.children) as HTMLElement[];
       setItems(masonryItem);
     }
-  }, []);
+  }, [columns]);  // Recalculate items if columns change
 
   useEffect(() => {
     const handleMasonry = () => {
-      if (!items || items.length < 1) return;
-      let gapSize = 0;
+      if (!items.length) return;
 
-      if (masonryContainer.current) {
-        gapSize = parseInt(
-          window
-            .getComputedStyle(masonryContainer.current)
-            .getPropertyValue("grid-row-gap")
-        );
-      }
+      const columnHeights = Array(columns).fill(0); // Track height of each column
 
-      const columnHeights: number[] = [0, 0, 0]; // Track column heights for 3 columns
+      items.forEach((item) => {
+        const minHeightIndex = columnHeights.indexOf(Math.min(...columnHeights));
+        const top = columnHeights[minHeightIndex];
+        const left = `${(100 / columns) * minHeightIndex}%`;
 
-      items.forEach((el, index) => {
-        if (!(el instanceof HTMLElement)) return;
-        const minHeightColumn = columnHeights.indexOf(Math.min(...columnHeights)); // Find the shortest column
-        const columnLeft = minHeightColumn * (100 / 3); // Determine column based on width
+        item.style.position = 'absolute';
+        item.style.top = `${top}px`;
+        item.style.left = left;
 
-        el.style.position = "absolute"; // Position each item absolutely to arrange them
-        el.style.top = `${columnHeights[minHeightColumn]}px`;
-        el.style.left = `${columnLeft}%`;
-
-        // Update the column height
-        columnHeights[minHeightColumn] += el.offsetHeight + gapSize;
+        // Update the height of the column that this item was placed in
+        columnHeights[minHeightIndex] = top + item.offsetHeight;
       });
-
-      masonryContainer.current.style.position = "relative"; // Container needs to be relative for absolute positioning of items
-      masonryContainer.current.style.height = `${Math.max(...columnHeights)}px`; // Set container height based on tallest column
     };
 
     handleMasonry();
-    window.addEventListener("resize", handleMasonry);
+    window.addEventListener('resize', handleMasonry);
     return () => {
-      window.removeEventListener("resize", handleMasonry);
+      window.removeEventListener('resize', handleMasonry);
     };
-  }, [items]);
+  }, [items, columns]);  // Recalculate masonry layout when items or columns change
 
   return masonryContainer;
 };
