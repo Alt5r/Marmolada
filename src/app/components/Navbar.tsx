@@ -22,7 +22,7 @@ export default function Navbar() {
           <li><Link href="/">Home</Link></li>
           <li><a></a></li>
           <li><Link href="/Gallery">Painting - latest</Link></li> {/* Button to Gallery */}
-          <li><a>Painting - larger</a></li>
+          <li><Link href="/painting-larger">Painting - larger</Link></li>
           <li><a>Painting - older</a></li>
           <li><a>Printmaking</a></li>
           <li><a>Bio</a></li>

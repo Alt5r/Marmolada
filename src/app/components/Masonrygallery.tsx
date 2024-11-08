@@ -28,7 +28,7 @@ export default function MasonryPage() {
             <img
               src={src}
               alt={`Painting ${index + 1}`}
-              className="w-full h-auto block border-2 rounder-lg border-white"
+              className="w-full h-auto block border-2 rounder-lg border-slate-600"
             />
           </div>
         ))}

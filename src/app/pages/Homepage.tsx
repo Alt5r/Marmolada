@@ -14,7 +14,7 @@ export default function Homepage() {
           alt="Description of the image"
           width={500}
           height={300}
-          className="mx-auto"
+          className="mx-auto rounded-lg"
         />
         
         {/* Text with same width as image */}
@@ -39,7 +39,7 @@ export default function Homepage() {
           alt="Description of the image"
           width={500}
           height={300}
-          className="mx-auto"
+          className="mx-auto rounded-lg"
         />
 
 <p className="text-black text-justify leading-relaxed" style={{ paddingLeft: '1px', paddingRight: '1px'}}>
