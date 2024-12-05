@@ -1,10 +1,17 @@
 'use client'
 import Image from "next/image";
+import Head from "next/head";
+import { useState, useEffect } from 'react';
 
 export default function Homepage() {
   return (
+   
+    
     <div style={{ backgroundColor: '#bcc5d1' }} className="flex w-full h-screen max-w-5xl mx-auto flex-col lg:flex-row gap-8 p-4">
-      
+       <Head>
+        <title>Nicola Bird Art</title>
+        <meta name="description" content="Showcase of Nicola Birds art" />
+      </Head>
       {/* Left Box - 50% Width, Auto Height */}
       <div style={{ backgroundColor: '#bcc5d1' }} className="card rounded-box lg:w-1/2 flex-grow p-4">
         

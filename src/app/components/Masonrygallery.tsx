@@ -1,10 +1,10 @@
-'use client';
+import { useEffect, useRef } from "react";
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
 
-import useMasonry from "./useMasonry";
+export default function MasonryPage2() {
+    const masonryContainer = useRef<HTMLDivElement | null>(null);
 
-export default function MasonryPage() {
-    const masonryContainer = useMasonry();
-  
     const images = [
       '/PaintingLarger/1.png',
       '/PaintingLarger/2.png',
@@ -16,22 +16,55 @@ export default function MasonryPage() {
       '/PaintingLarger/8.png',
       // Add more images here as needed
     ];
-  
-    return (
-      <div
-        ref={masonryContainer}
-        className="relative w-full mx-auto my-8"
-        style={{ position: 'relative' }} // Make sure the container has a relative position.
-      >
-        {images.map((src, index) => (
-          <div key={index} className="masonry-item" style={{ width: '33.333%' }}>
+
+    useEffect(() => {
+      if (masonryContainer.current) {
+          const masonryInstance = new Masonry(masonryContainer.current, {
+              itemSelector: ".masonry-item",
+              columnWidth: ".masonry-item",
+              percentPosition: true,
+              gutter: 50,
+          });
+
+          // Use imagesLoaded to ensure Masonry is initialized only after images are loaded
+          imagesLoaded(masonryContainer.current, () => {
+              masonryInstance.layout();
+          });
+      }
+  }, []);
+
+  return (
+    <div
+    ref={masonryContainer}
+    className="relative w-full mx-auto my-8 masonry-container"
+>
+    {images.map((src, index) => (
+        <div key={index} className="masonry-item mb-16">
             <img
-              src={src}
-              alt={`Painting ${index + 1}`}
-              className="w-full h-auto block border-2 rounder-lg border-slate-600"
+                src={src}
+                alt={`Painting ${index + 1}`}
+                className="w-full h-auto block border-2 rounded-lg border-slate-600"
             />
-          </div>
-        ))}
-      </div>
-    );
-  }
+        </div>
+    ))}
+    <style jsx>{`
+        .masonry-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .masonry-item {
+            width: 30%; /* Default for larger screens */
+        }
+        @media (max-width: 991px) {
+            .masonry-item {
+                width: 100%; /* Single column for smaller screens */
+            }
+        }
+    `}</style>
+</div>
+  );
+}
+
+
+
+

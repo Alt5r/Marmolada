@@ -23,7 +23,8 @@ export default function Navbar() {
           <li><a></a></li>
           <li><Link href="/Gallery">Painting - latest</Link></li> {/* Button to Gallery */}
           <li><Link href="/painting-larger">Painting - larger</Link></li>
-          <li><a>Painting - older</a></li>
+          <li><Link href="/painting-older">Painting - older</Link></li>
+          
           <li><a>Printmaking</a></li>
           <li><a>Bio</a></li>
           <li><a>Contact</a></li>
