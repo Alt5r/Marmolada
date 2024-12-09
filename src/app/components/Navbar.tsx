@@ -7,11 +7,11 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="navbar bg-backgroundNavbar px-4">
+    <div className="navbar bg-backgroundNavbar px-4 overflow-hidden">
       {/* Navbar Start */}
       <div className="navbar-start">
         <div className="mt-2 ml-2">
-          <a className="btn btn-ghost text-xl">Nicola Bird</a>
+        <a className="btn btn-ghost text-xl whitespace-nowrap">Nicola Bird</a>
         </div>
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
