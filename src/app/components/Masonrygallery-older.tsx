@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from "react";
-import Masonry from "masonry-layout";
-import imagesLoaded from "imagesloaded";
+
 
 export default function MasonryPage2() {
     const masonryContainer = useRef<HTMLDivElement | null>(null);
@@ -26,11 +25,16 @@ export default function MasonryPage2() {
         '/PaintingOlder/16.jpg',
         '/PaintingOlder/17.jpg',
         '/PaintingOlder/18.jpg',
-        // Add more images here as needed
     ];
 
     useEffect(() => {
-        if (masonryContainer.current) {
+        const initializeMasonry = async () => {
+            if (typeof window === "undefined" || !masonryContainer.current) return;
+
+            // Dynamically import Masonry and imagesLoaded
+            const Masonry = (await import("masonry-layout")).default;
+            const imagesLoaded = (await import("imagesloaded")).default;
+
             const masonryInstance = new Masonry(masonryContainer.current, {
                 itemSelector: ".masonry-item",
                 columnWidth: ".masonry-item",
@@ -42,7 +46,9 @@ export default function MasonryPage2() {
             imagesLoaded(masonryContainer.current, () => {
                 masonryInstance.layout();
             });
-        }
+        };
+
+        initializeMasonry();
     }, []);
 
     return (

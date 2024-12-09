@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+
 import Link from 'next/link';
  
 export default function Navbar() {
@@ -25,8 +25,8 @@ export default function Navbar() {
           <li><Link href="/painting-larger">Painting - larger</Link></li>
           <li><Link href="/painting-older">Painting - older</Link></li>
           
-          <li><a>Printmaking</a></li>
-          <li><a>Bio</a></li>
+          <li><Link href="/print-making">Printmaking</Link></li>
+          <li><Link href="/bio">Bio</Link></li>
           <li><a>Contact</a></li>
         </ul>
       </div>

@@ -8,7 +8,12 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: '#bcc5d1' }}>
       <Navbar />
-      <MasonryPage2 />
+      <div className="flex justify-center">
+        <div className="w-11/12 max-w-10xl">
+          <MasonryPage2 />
+        </div>
+      </div>
     </div>
   );
 }
+
