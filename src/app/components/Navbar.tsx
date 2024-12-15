@@ -10,9 +10,6 @@ export default function Navbar() {
     <div className="navbar bg-backgroundNavbar px-4 overflow-hidden">
       {/* Navbar Start */}
       <div className="navbar-start">
-        <div className="mt-2 ml-2">
-        <a className="btn btn-ghost text-xl whitespace-nowrap">Nicola Bird</a>
-        </div>
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button
@@ -35,6 +32,10 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
+        <div className="mt-2 ml-2">
+        <a className="btn btn-ghost text-xl whitespace-nowrap">Nicola Bird</a>
+        </div>
+        
       </div>
 
       {/* Navbar Center */}
