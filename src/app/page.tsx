@@ -10,7 +10,7 @@ export default function Home() {
   
 
   return (
-    <div style={{ backgroundColor: '#bcc5d1' }}>
+    <div style={{ backgroundColor: '#bcc5d1', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
     <Navbar />
     <Homepage />
    
