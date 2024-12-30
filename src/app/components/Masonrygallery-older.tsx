@@ -8,7 +8,7 @@ export default function MasonryPage2() {
 
     const images = [
         '/PaintingOlder/1.jpg',
-        '/PaintingOlder/2.jpg',
+        //'/PaintingOlder/2.jpg',
         '/PaintingOlder/3.jpg',
         '/PaintingOlder/4.jpg',
         '/PaintingOlder/5.jpg',
